@@ -96,6 +96,7 @@ export function dislikePost({ token, postId }) {
     });
 }
 
+
 export function deletePost({ token, postId }) {
   return fetch(`${postsHost}/${postId}`, {
     method: "DELETE",
