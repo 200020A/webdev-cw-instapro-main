@@ -51,15 +51,15 @@ export function renderUserPostsPageComponent({ appEl }) {
   for (let likeButtonEl of document.querySelectorAll(".like-button")) {
     likeButtonEl.addEventListener("click", (event) => {
       event.stopPropagation();
-      
+
       const postId = likeButtonEl.dataset.postId;
       const post = posts.find((post) => post.id === postId);
-      
+
       if (!user) {
         alert("Вы должны быть авторизованы чтобы ставить лайки.");
         return;
       }
-      
+
       if (post.isLiked) {
         dislikePost({ token: `Bearer ${user.token}`, postId })
           .then(({ post: updatedPost }) => {

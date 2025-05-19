@@ -121,7 +121,7 @@ const renderApp = () => {
           })
           .catch((error) => {
             console.error(error);
-            alert("Ошибка при добавлении поста.");
+            alert("Ошибка при добавлении поста: " + error.message);
           });
       },
     });
