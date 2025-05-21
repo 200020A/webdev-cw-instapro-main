@@ -10,7 +10,6 @@ export function getUserFromLocalStorage(user) {
   }
 }
 
-
 export function removeUserFromLocalStorage(user) {
   window.localStorage.removeItem("user");
 }
@@ -58,6 +57,6 @@ export function formatLikes(likes) {
   } else if (likes.length === 1) {
     return `Нравится: <strong>${likes[0].name}</strong>`;
   } else {
-    return `Нравится: <strong>${likes[0].name} и еще ${likes.length - 1}</strong>`;
+    return `Нравится: <strong>${likes[0].name}</strong> и еще <strong>${likes.length - 1}</strong>`;
   }
 }

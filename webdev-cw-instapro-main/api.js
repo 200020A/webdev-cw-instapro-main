@@ -1,4 +1,4 @@
-const personalKey = "prod";
+const personalKey = "anastasia_petrova"; // Updated from "prod"
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 
@@ -45,7 +45,7 @@ export function addPost({ token, description, imageUrl }) {
     method: "POST",
     headers: {
       Authorization: token,
-      "Content-Type": "application/json",
+      // Removed Content-Type header as it was causing issues
     },
     body: JSON.stringify({
       description,

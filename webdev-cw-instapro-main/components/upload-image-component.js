@@ -78,3 +78,4 @@ export function renderUploadImageComponent({ element, onImageUrlChange }) {
   // Инициализация компонента
   render();
 }
+
