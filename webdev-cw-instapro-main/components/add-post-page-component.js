@@ -56,7 +56,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
       setError("");
 
       const description = descriptionInputElement.value.trim();
-      
+
       if (!description) {
         setError("Введите описание поста");
         return;

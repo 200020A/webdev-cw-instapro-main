@@ -1,6 +1,7 @@
 import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage, user } from "../index.js";
 import { likePost, dislikePost } from "../api.js";
+import { formatDistanceToNow, formatLikes } from "../helpers.js";
 
 export function renderUserPostsPageComponent({ appEl }) {
   const userId = posts.length > 0 ? posts[0].user.id : null;
@@ -26,7 +27,7 @@ export function renderUserPostsPageComponent({ appEl }) {
                   <img src="./assets/images/${post.isLiked ? 'like-active.svg' : 'like-not-active.svg'}">
                 </button>
                 <p class="post-likes-text">
-                  Нравится: <strong>${post.likes.length}</strong>
+                  ${formatLikes(post.likes)}
                 </p>
               </div>
               <p class="post-text">
@@ -34,7 +35,7 @@ export function renderUserPostsPageComponent({ appEl }) {
                 ${post.description}
               </p>
               <p class="post-date">
-                ${new Date(post.createdAt).toLocaleString()}
+                ${formatDistanceToNow(post.createdAt)}
               </p>
             </li>
           `;
@@ -51,15 +52,15 @@ export function renderUserPostsPageComponent({ appEl }) {
   for (let likeButtonEl of document.querySelectorAll(".like-button")) {
     likeButtonEl.addEventListener("click", (event) => {
       event.stopPropagation();
-      
+
       const postId = likeButtonEl.dataset.postId;
       const post = posts.find((post) => post.id === postId);
-      
+
       if (!user) {
         alert("Вы должны быть авторизованы чтобы ставить лайки.");
         return;
       }
-      
+
       if (post.isLiked) {
         dislikePost({ token: `Bearer ${user.token}`, postId })
           .then(({ post: updatedPost }) => {
